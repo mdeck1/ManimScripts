@@ -1,17 +1,45 @@
-# coding=utf-8
-# This is a sample Python script.
+from manim import *
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import networkx as nx
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print("Hi, {0}".format(name))  # Press Ctrl+F8 to toggle the breakpoint.
+# class DrawTree(Scene):
+#     def construct(self):
+#         vertices = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+#         edges = [
+#             (1, 2),
+#             (1, 3),
+#             (2, 4),
+#             (2, 5),
+#             (3, 6),
+#             (3, 7),
+#             (4, 8),
+#             (4, 9)]
+#         g = Graph(vertices, edges, layout="circular", layout_scale=3,
+#                   labels=True,
+#                   # vertex_config={7: {"fill_color": RED}},
+#                   # edge_config={(1, 7): {"stroke_color": RED},
+#                   #              (2, 7): {"stroke_color": RED},
+#                   #              (4, 7): {"stroke_color": RED}}
+#                   )
+#         self.add(g)
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+class Tree(Scene):
+    def construct(self):
+        # nx_graph = nx.Graph()
+        #
+        # nx_graph.add_node(1)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+        nodes = [1]
+        edges = []
+
+        for index in range(2, 10):
+            nodes = nodes + [index]  # nx_graph.add_node(index)
+            edges = edges + [(int(index/2), index)]  # nx_graph.add_edge(int(index / 2), index)
+
+        graph = Graph(nodes, edges, labels=True, root_vertex=1)  # , layout="circular", list(nx_graph.nodes), list(nx_graph.edges)
+
+        self.play(Create(graph), run_time=10)
+        # self.play(graph.animate.change_layout("tree"))
+        # self.wait()
