@@ -41,5 +41,5 @@ class Tree(Scene):
         graph = Graph(nodes, edges, labels=True, root_vertex=1)  # , layout="circular", list(nx_graph.nodes), list(nx_graph.edges)
 
         self.play(Create(graph), run_time=10)
-        # self.play(graph.animate.change_layout("tree"))
-        # self.wait()
+        self.play(graph.animate.change_layout("tree"))
+        self.wait()
